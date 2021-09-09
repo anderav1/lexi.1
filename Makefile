@@ -23,7 +23,7 @@ $(LIBOBJS): %.o: %.c $(LIBDEPS)
 
 # create library archive
 liblog.a: $(LIBOBJS)
-	ar $@ $^
+	ar rc $@ $^
 
 # remove all previously generated files
 .PHONY: clean
