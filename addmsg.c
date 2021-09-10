@@ -1,3 +1,5 @@
+#include <errno.h>
+#include <stdio.h>
 #include "log.h"
 
 // log_t* headptr and log_t* tailptr defined in log.c
@@ -10,9 +12,11 @@ int addmsg(const char type, const char* msg) {
 	char c = toupper(type);
 	if (c != 'I' && c != 'W' && c != 'E' && c != 'F') {
 		// issue an error: invalid msg type
+		// set errno=EINVAL, invalid argument
 		//
-		//
-		return -1;
+		//errno = EINVAL;
+		perror("Message failed to save to log");
+		return(-1);
 	}	
 
 	// get current time
@@ -25,10 +29,16 @@ int addmsg(const char type, const char* msg) {
 	log_t* newnode;
 	int size = sizeof(log_t) + strlen(msg) + 1;
 	//ensure that node can be added
-	if ((newnode = (log_t*)(malloc(nodesize))) == NULL) return -1;
-	
+	if ((newnode = (log_t*)(malloc(nodesize))) == NULL) {
+		// set errno using perror
+		//
+		//
+		perror("Node creation failed");
+		return(-1);
+	}
+
 	newnode->item.time = tm;
-	newnode->item.type = type;
+	newnode->item.type = c;
 	newnode->item.string = (char*)newnode + sizeof(log_t);
 	strcpy(newnode->item.string, msg);
 
