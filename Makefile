@@ -2,7 +2,7 @@ CC=gcc
 CFLAGS=-I.
 TAR=driver
 DEPS = driver.c liblog.a
-LIBDEPS = log.h
+LIBDEPS = log.h log.c
 OBJ = driver.o
 LIBOBJS = addmsg.o clearlog.o getlog.o savelog.o 
 

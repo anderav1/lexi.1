@@ -7,8 +7,17 @@ typedef struct data_struct
 	char* string;
 } data_t;
 
-int addmsg(const char type, const char* msg); // add a new msg to the end of the list
-void clearlog(); // empty the list of logged msgs
-char* getlog(); // create a str containing the entire log amd return a ptr to the str
-int savelog(char* filename); // save the log to a disk file
+typedef struct list_struct
+{
+	data_t item;
+	struct list_struct* next;
+} log_t;
+
+extern log_t* headptr;
+extern log_t* tailptr;
+
+int addmsg(const char type, const char* msg);
+void clearlog();
+char* getlog();
+int savelog(char* filename);
 
