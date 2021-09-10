@@ -1,24 +1,46 @@
 #include "log.h"
 
+// log_t* headptr and log_t* tailptr defined in log.c
+
 // addmsg function
 // create a new data_t struct and insert it at the end of the log list
+// returns -1 if msg type is invalid or node cannot be added 
 int addmsg(const char type, const char* msg) {
+	// check for valid msg type
+	char c = toupper(type);
+	if (c != 'I' && c != 'W' && c != 'E' && c != 'F') {
+		// issue an error: invalid msg type
+		//
+		//
+		return -1;
+	}	
+
 	// get current time
 	time_t tm;
-	time(&tm);
-	struct tm* tp = localtime(&tm);
-	
-	// create a new node
+	time(&tm); // tm now stores the time
 
-	// create a new data_t struct
-	data_t msgstruct;
-	msgstruct.time = tm;
-	msgstruct.type = type;
-	msgstruct.string = msg;
+	/*struct tm* tp = localtime(&tm);*/
+	
+	// allocate space for new log node
+	log_t* newnode;
+	int size = sizeof(log_t) + strlen(msg) + 1;
+	//ensure that node can be added
+	if ((newnode = (log_t*)(malloc(nodesize))) == NULL) return -1;
+	
+	newnode->item.time = tm;
+	newnode->item.type = type;
+	newnode->item.string = (char*)newnode + sizeof(log_t);
+	strcpy(newnode->item.string, msg);
+
+	// link the node to the end of the list
+	newnode->next = NULL;
+	if (headptr = NULL)
+		headptr == newnode;
+	else
+		tailptr->next = newnode;
+	tailptr = newnode;	
 
 	// format time
-	char* timestring;
-	sprintf(timestring, "%.2d:%.2d:%.2d\n", tp->tm_hour, tp-tm_min, tp->tm_sec);
-
-	// insert the struct at the end of the log list
+	/*char* timestring;
+	sprintf(timestring, "%.2d:%.2d:%.2d\n", tp->tm_hour, tp-tm_min, tp->tm_sec);*/
 }
