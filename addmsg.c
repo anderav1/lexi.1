@@ -23,8 +23,6 @@ int addmsg(const char type, const char* msg) {
 	time_t tm;
 	time(&tm); // tm now stores the time
 
-	/*struct tm* tp = localtime(&tm);*/
-	
 	// allocate space for new log node
 	log_t* newnode;
 	int size = sizeof(log_t) + strlen(msg) + 1;
@@ -49,8 +47,4 @@ int addmsg(const char type, const char* msg) {
 	else
 		tailptr->next = newnode;
 	tailptr = newnode;	
-
-	// format time
-	/*char* timestring;
-	sprintf(timestring, "%.2d:%.2d:%.2d\n", tp->tm_hour, tp-tm_min, tp->tm_sec);*/
 }
