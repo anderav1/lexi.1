@@ -19,8 +19,7 @@ int savelog(char* filename) {
 	log_t* currentnode = headptr;
 	log_t* nextnode;
 
-	while (currentnode != NULL) {
-		// print node data to file
+	while (currentnode != NULL) { // print node data to file
 		// write time
 		struct tm* tp = localtime(&(currentnode->item.time));
 		char* timestr;
@@ -37,4 +36,3 @@ int savelog(char* filename) {
 	fclose(fp);
 	return(0);
 }
-
