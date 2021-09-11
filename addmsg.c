@@ -1,4 +1,3 @@
-#include <errno.h>
 #include <stdio.h>
 #include "log.h"
 
@@ -12,9 +11,6 @@ int addmsg(const char type, const char* msg) {
 	char c = toupper(type);
 	if (c != 'I' && c != 'W' && c != 'E' && c != 'F') {
 		// issue an error: invalid msg type
-		// set errno=EINVAL, invalid argument
-		//
-		//errno = EINVAL;
 		perror("Message failed to save to log");
 		return(-1);
 	}	
@@ -25,12 +21,9 @@ int addmsg(const char type, const char* msg) {
 
 	// allocate space for new log node
 	log_t* newnode;
-	int size = sizeof(log_t) + strlen(msg) + 1;
+	int nodesize = sizeof(log_t) + strlen(msg) + 1;
 	//ensure that node can be added
 	if ((newnode = (log_t*)(malloc(nodesize))) == NULL) {
-		// set errno using perror
-		//
-		//
 		perror("Node creation failed");
 		return(-1);
 	}

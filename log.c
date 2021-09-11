@@ -9,22 +9,45 @@ log_t* tailptr = NULL;
 // writenode function
 // helper function that returns a string containing the contents of a single node
 char* nodestring(log_t* node) {
-	char* nodestr = NULL;
+	// assign storage for node string
+	char* nodestr;
+	int strsize = 45 + strlen(node->item.string);
+	// check allocation
+	if ((nodestr = (char*)malloc(strsize)) == NULL) {
+		perror("Could not assign memory for node string");
+		return NULL;
+	}
+
 	// format & write time
-	struct tm* tp = localtime(&(node->item.time));
 	char* timestr;
+	struct tm* tp = localtime(&(node->item.time));
+	if ((timestr = (char*)malloc(16)) == NULL) {
+		perror("Could not assign memory for timestamp string");
+		return NULL;
+	}
 	sprintf(timestr, "Time: %.2d:%.2d:%.2d\n", tp->tm_hour, tp->tm_min, tp->tm_sec);
 	strcat(nodestr, timestr);
+	free(timestr);
 
 	// write type
 	char* typestr;
+	if ((typestr = (char*)malloc(17)) == NULL) {
+		perror("Could not assign memory for message type");
+		return NULL;
+	}
 	sprintf(typestr, "Message type: %c\n", node->item.type);
 	strcat(nodestr, typestr);
+	free(typestr);
 
 	// write message
 	char* msgstr;
+	if ((msgstr = (char*)malloc(12 + strlen(node->item.string))) == NULL) {
+		perror("Could not assign memory for message");
+		return NULL;
+	}
 	sprintf(msgstr, "Message: %s\n\n", node->item.string);
 	strcat(nodestr, msgstr);
+	free(msgstr);
 
 	return nodestr;
 }
