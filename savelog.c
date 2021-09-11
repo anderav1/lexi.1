@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 #include "log.h"
 
 // log_t* headptr and log_t* tailptr defined in log.c
@@ -17,22 +18,36 @@ int savelog(char* filename) {
 
 	// traverse the list, writing each node's contents to the file
 	log_t* currentnode = headptr;
-	log_t* nextnode;
 
 	while (currentnode != NULL) { // print node data to file
-		// write time
-		struct tm* tp = localtime(&(currentnode->item.time));
-		char* timestr;
-		sprintf(timestr, "%.2d:%.2d:%.2d", tp->tm_hour, tp_tm_min, tp->tm_sec);
-		fprintf(fp, "Time: %s\n", timestr);
-		
-		// write msg type
-		fprintf(fp, "Message type: %c\n", currentnode->item.type);
-
-		// write msg
-		fprintf(fp, "Message: %s\n\n", currentnode->item.string);	
+		str = nodestring(currentnode);
+		fprintf(fp, "%s", str);
+		currentnode = currentnode->next;
 	}
 
 	fclose(fp);
 	return(0);
+}
+
+// writenode function
+// helper function that returns a string containing the contents of the node
+char* nodestring(log_t* node) {
+	char* nodestr = NULL;
+	// format & write time
+	struct tm* tp = localtime(&(node->item.time));
+	char* timestr;
+	sprintf(timestr, "Time: %.2d:%.2d:%.2d\n", tp->tm_hour, tp->tm_min, tp->tm_sec);
+	strcat(nodestr, timestr);
+
+	// write type
+	char* typestr;
+	sprintf(typestr, "Message type: %c\n", node->item.type);
+	strcat(nodestr, typestr);
+
+	// write message
+	char* msgstr;
+	sprintf(msgstr, "Message: %s\n\n", node->item.string);
+	strcat(nodestr, msgstr);
+
+	return nodestr;
 }
