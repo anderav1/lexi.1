@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <time.h>
 #include "log.h"
 
 // log_t* headptr and log_t* tailptr defined in log.c

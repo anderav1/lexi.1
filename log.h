@@ -20,4 +20,4 @@ int addmsg(const char type, const char* msg);
 void clearlog();
 char* getlog();
 int savelog(char* filename);
-
+char* nodestring(log_t* node);
