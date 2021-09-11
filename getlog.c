@@ -7,21 +7,25 @@
 // assign the contents of the log to a string, then return a ptr to the string
 char* getlog(void) {
 	char* logstr;
-	int strsize = sizeof(char*)
+	int size = 50;
 	
 	// allocate memory for the string ptr
-	char* logstr = (char*)malloc(/*?????*/);
+	if ((logstr = (char*)malloc(size)) == NULL) {
+		perror("Could not allocate memory for log string");
+		return NULL;
+	}
 
 	log_t* currentnode = headptr;
 
 	while (currentnode != NULL) {
+		size += strlen(currentnode->item.string) + 45;
+		if ((logstr = (log*)realloc(logstr, size)) == NULL) {
+			perror("Could not allocate memory for log string");
+			return NULL;
+		}
 		// append node's contents to logstr
-		char* nodestr = nodestring(currentnode);
-		strcat(logstr, nodestr);
+		strcat(logstr, nodestring(currentnode));
 	}
-	
-	// copy the log into the string
-	//strcpy(logstr, /*??????*/);	
 	
 	// return a ptr to the string
 	return logstr;
