@@ -1,9 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <unistd.h>
 
 // driver program
 int main(int argc, char* argv[]) {
 	char c;
-	int sec;
+	int sec = 5;
 
 	// check for optional args
 	while ((c = getopt(argc, argv, "ht:")) != -1) {
@@ -25,7 +28,6 @@ int main(int argc, char* argv[]) {
 	// check for output filename arg
 	char* ofilename;
 	char* defaultfilename = "messages.log";
-	ofilename = (char*)malloc(strlen());
 	strcpy(ofilename, "message.log");
 	if (argv[optind] != NULL) {
 		ofilename = (char*)malloc(strlen(argv[optind]));
@@ -36,11 +38,45 @@ int main(int argc, char* argv[]) {
 	}
 
 	// read the messages in from a txt file
+	FILE* fp = fopen("messages.txt", "r");
+	int linesize = 256;
+	char* line = (char*)malloc(linesize);
+	while (fgets(line, linesize, fp)) { // read each line of txt file
+		char type = line[0];
+		line++;
+		line++;
+		char* msg = line;
+		addmsg(type, msg);
+
+		// wait between messages
+		srand(time(NULL));
+		int waittime = rand() % ((sec*2) + 1);
+		sleep(waittime);
+	}
+
+	free(line);
+	fclose(fp);
 	
+	// run savelog func
+	if (savelog(ofilename) == 0) {
+		printf("savelog function successful: Log saved to file %s\n", ofilename);
+	} else {
+		puts("savelog function failed\n");
+		return(-1);
+	}
 
+	// run getlog func
+	char* logstring = (char*)malloc(256);
+	logstring = getlog();
+	if (logstring != NULL) {
+		printf("getlog function successful: Log saved to string:\n %s\n", logstring);
+	} else {
+		puts("getlog function failed\n");
+		return(-1);
+	}
+	free(logstring);
 
-
-
-
-
+	// run clearlog func
+	clearlog();
+	return(0);
 }
