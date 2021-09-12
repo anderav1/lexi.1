@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "log.h"
 
 // log_t* headptr and log_t* tailptr defined in log.c
@@ -19,7 +20,7 @@ int savelog(char* filename) {
 	log_t* currentnode = headptr;
 
 	while (currentnode != NULL) { // print node data to file
-		str = nodestring(currentnode);
+		char* str = nodestring(currentnode);
 		fprintf(fp, "%s", str);
 		currentnode = currentnode->next;
 	}

@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include <unistd.h>
+#include "log.h"
 
 // driver program
 int main(int argc, char* argv[]) {
@@ -28,7 +30,6 @@ int main(int argc, char* argv[]) {
 	// check for output filename arg
 	char* ofilename;
 	char* defaultfilename = "messages.log";
-	strcpy(ofilename, "message.log");
 	if (argv[optind] != NULL) {
 		ofilename = (char*)malloc(strlen(argv[optind]));
 		strcpy(ofilename, argv[optind]);

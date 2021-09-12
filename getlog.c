@@ -1,3 +1,5 @@
+#include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 #include "log.h"
 
@@ -19,7 +21,7 @@ char* getlog(void) {
 
 	while (currentnode != NULL) {
 		size += strlen(currentnode->item.string) + 45;
-		if ((logstr = (log*)realloc(logstr, size)) == NULL) {
+		if ((logstr = (log_t*)realloc(logstr, size)) == NULL) {
 			perror("Could not allocate memory for log string");
 			return NULL;
 		}
