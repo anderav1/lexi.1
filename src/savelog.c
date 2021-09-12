@@ -35,17 +35,17 @@ char* nodestring(log_t* node) {
 	char* nodestr = NULL;
 	// format & write time
 	struct tm* tp = localtime(&(node->item.time));
-	char* timestr;
+	char* timestr = "";
 	sprintf(timestr, "Time: %.2d:%.2d:%.2d\n", tp->tm_hour, tp->tm_min, tp->tm_sec);
 	strcat(nodestr, timestr);
 
 	// write type
-	char* typestr;
+	char* typestr = "";
 	sprintf(typestr, "Message type: %c\n", node->item.type);
 	strcat(nodestr, typestr);
 
 	// write message
-	char* msgstr;
+	char* msgstr = "";
 	sprintf(msgstr, "Message: %s\n\n", node->item.string);
 	strcat(nodestr, msgstr);
 
