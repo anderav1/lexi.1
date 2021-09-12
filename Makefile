@@ -1,8 +1,8 @@
 CC = gcc
-CFLAGS = -g -Wall -Wshadow
+CFLAGS = -g -Wall -Wshadow -L.
 TAR = driver
 DEPS = driver.c liblog.a
-LIBDEPS = log.h log.c
+LIBDEPS = log.h #log.c
 OBJ = driver.o
 LIBOBJS = addmsg.o clearlog.o getlog.o savelog.o
 
@@ -20,10 +20,10 @@ $(LIBOBJS): %.o: %.c $(LIBDEPS)
 
 # create library archive
 liblog.a: $(LIBOBJS)
-	ar rc $@ $^
+	ar rcs $@ $^
 
 # remove all previously generated files
 .PHONY: clean
-
 clean:
 	rm -f $(TAR) *.o *.a
+

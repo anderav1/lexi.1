@@ -1,4 +1,7 @@
+#include <ctype.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "log.h"
 
 // log_t* headptr and log_t* tailptr defined in log.c
@@ -35,9 +38,11 @@ int addmsg(const char type, const char* msg) {
 
 	// link the node to the end of the list
 	newnode->next = NULL;
-	if (headptr = NULL)
-		headptr == newnode;
+	if (headptr == NULL)
+		headptr = newnode;
 	else
 		tailptr->next = newnode;
-	tailptr = newnode;	
+	tailptr = newnode;
+
+	return(0);	
 }
