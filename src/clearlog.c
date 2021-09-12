@@ -2,6 +2,8 @@
 #include "../log.h"
 
 // log_t* headptr and log_t* tailptr defined in log.c
+extern log_t* headptr;
+extern log_t* tailptr;
 
 // clearlog function
 // release all the storage that has been allocated for the logged msg and

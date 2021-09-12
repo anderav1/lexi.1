@@ -1,10 +1,28 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "log.h"
+#include "../log.h"
 
-log_t* headptr = NULL;
-log_t* tailptr = NULL;
+extern log_t* headptr;
+extern log_t* tailptr;
+
+// getters and setters for list ptrs
+log_t* gethead() {
+	return headptr;
+}
+
+void sethead(log_t* ptr) {
+	headptr = ptr;
+}
+
+log_t* gettail() {
+	return tailptr;
+}
+
+void settail(log_t* ptr) {
+	tailptr = ptr;
+}
 
 // writenode function
 // helper function that returns a string containing the contents of a single node

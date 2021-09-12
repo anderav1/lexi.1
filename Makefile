@@ -1,10 +1,10 @@
 CC = gcc
 CFLAGS = -g -Wall -Wshadow -L. -llog
 TAR = driver
-DEPS = driver.c log.h log.c
-LIBDEPS = log.h log.c
+DEPS = driver.c log.h src/log.c
+LIBDEPS = log.h src/log.c
 OBJ = driver.o
-LIBOBJS = addmsg.o clearlog.o getlog.o savelog.o
+LIBOBJS = addmsg.o clearlog.o getlog.o savelog.o log.o
 
 # main program executable
 $(TAR): $(OBJ) liblog.a

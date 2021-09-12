@@ -16,8 +16,13 @@ typedef struct list_struct
 	struct list_struct* next;
 } log_t;
 
-extern log_t* headptr;
-extern log_t* tailptr;
+log_t* headptr = NULL;
+log_t* tailptr = NULL;
+
+log_t* gethead();
+void sethead(log_t* ptr);
+log_t* gettail();
+void settail(log_t* ptr);
 
 int addmsg(const char type, const char* msg);
 void clearlog();

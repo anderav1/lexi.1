@@ -5,6 +5,8 @@
 #include "../log.h"
 
 // log_t* headptr and log_t* tailptr defined in log.c
+extern log_t* headptr;
+extern log_t* tailptr;
 
 // addmsg function
 // create a new data_t struct and insert it at the end of the log list
@@ -38,6 +40,8 @@ int addmsg(const char type, const char* msg) {
 
 	// link the node to the end of the list
 	newnode->next = NULL;
+	headptr = gethead();
+	tailptr = gettail();
 	if (headptr == NULL)
 		headptr = newnode;
 	else

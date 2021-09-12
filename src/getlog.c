@@ -4,6 +4,8 @@
 #include "../log.h"
 
 // log_t* headptr and log_t* tailptr defined in log.c
+extern log_t* headptr;
+extern log_t* tailptr;
 
 // getlog function
 // assign the contents of the log to a string, then return a ptr to the string
