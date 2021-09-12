@@ -1,8 +1,8 @@
 CC = gcc
-CFLAGS = -g -Wall -Wshadow -L.
+CFLAGS = -g -Wall -Wshadow -L. -llog
 TAR = driver
-DEPS = driver.c liblog.a
-LIBDEPS = log.h #log.c
+DEPS = driver.c liblog.a log.c
+LIBDEPS = log.h log.c
 OBJ = driver.o
 LIBOBJS = addmsg.o clearlog.o getlog.o savelog.o
 
@@ -14,13 +14,13 @@ $(TAR): $(OBJ)
 $(OBJ): %.o: %.c $(DEPS)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
-# generate library function objs
-$(LIBOBJS): %.o: %.c $(LIBDEPS)
-	$(CC) $(CFLAGS) -o $@ -c $<
-
 # create library archive
 liblog.a: $(LIBOBJS)
 	ar rcs $@ $^
+
+# generate library function objs
+$(LIBOBJS): %.o: src/%.c $(LIBDEPS)
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 # remove all previously generated files
 .PHONY: clean

@@ -1,4 +1,5 @@
-#include "log.h"
+#include <stdlib.h>
+#include "../log.h"
 
 // log_t* headptr and log_t* tailptr defined in log.c
 

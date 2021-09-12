@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "log.h"
+#include "../log.h"
 
 // log_t* headptr and log_t* tailptr defined in log.c
 
@@ -21,7 +21,7 @@ char* getlog(void) {
 
 	while (currentnode != NULL) {
 		size += strlen(currentnode->item.string) + 45;
-		if ((logstr = (log_t*)realloc(logstr, size)) == NULL) {
+		if ((logstr = (char*)realloc(logstr, size)) == NULL) {
 			perror("Could not allocate memory for log string");
 			return NULL;
 		}
