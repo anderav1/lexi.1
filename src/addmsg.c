@@ -5,8 +5,8 @@
 #include "../log.h"
 
 // log_t* headptr and log_t* tailptr defined in log.c
-extern log_t* headptr;
-extern log_t* tailptr;
+//extern log_t* headptr;
+//extern log_t* tailptr;
 
 // addmsg function
 // create a new data_t struct and insert it at the end of the log list
