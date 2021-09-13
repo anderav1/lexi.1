@@ -25,5 +25,5 @@ $(LIBOBJS): %.o: src/%.c $(LIBDEPS)
 # remove all previously generated files
 .PHONY: clean
 clean:
-	rm -f $(TAR) *.o *.a
+	rm -f $(TAR) *.o *.a messages.log
 
