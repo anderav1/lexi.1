@@ -40,8 +40,6 @@ int addmsg(const char type, const char* msg) {
 
 	// link the node to the end of the list
 	newnode->next = NULL;
-	headptr = gethead();
-	tailptr = gettail();
 	if (headptr == NULL)
 		headptr = newnode;
 	else

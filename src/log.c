@@ -7,23 +7,6 @@
 log_t* headptr = NULL;
 log_t* tailptr = NULL;
 
-// getters and setters for list ptrs
-log_t* gethead() {
-	return headptr;
-}
-
-void sethead(log_t* ptr) {
-	headptr = ptr;
-}
-
-log_t* gettail() {
-	return tailptr;
-}
-
-void settail(log_t* ptr) {
-	tailptr = ptr;
-}
-
 // writenode function
 // helper function that returns a string containing the contents of a single node
 char* nodestring(log_t* node) {

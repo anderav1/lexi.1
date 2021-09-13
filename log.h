@@ -19,11 +19,6 @@ typedef struct list_struct
 extern log_t* headptr;
 extern log_t* tailptr;
 
-log_t* gethead();
-void sethead(log_t* ptr);
-log_t* gettail();
-void settail(log_t* ptr);
-
 int addmsg(const char type, const char* msg);
 void clearlog();
 char* getlog();
