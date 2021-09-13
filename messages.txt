@@ -1,11 +1,11 @@
-I "Variable msg is of type 'char*'"
-E "No such directory found"
-F "Cannot divide by zero"
-W "Variable has not been declared"
-I "Loading data from file"
-W "Pointer is null"
-F "Fatal error has occurred"
-F "Program execution failed"
-E "Cannot assign float value to int variable"
-E "File does not exist"
+I Variable msg is of type 'char*'
+E No such directory found
+F Cannot divide by zero
+W Variable has not been declared
+I Loading data from file
+W Pointer is null
+F Fatal error has occurred
+F Program execution failed
+E Cannot assign float value to int variable
+E File does not exist
 

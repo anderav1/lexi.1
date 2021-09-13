@@ -8,13 +8,18 @@
 // driver program
 int main(int argc, char* argv[]) {
 	char c;
-	int sec = 5;
+	int sec = 0;
 
 	// check for optional args
 	while ((c = getopt(argc, argv, "ht:")) != -1) {
 		switch (c) {
 		case 'h':
 			// display help message
+			puts("LIBLOG HELP\n");
+			puts("Run the driver program with the command 'drive [-h] [-t SEC] [LOGFILE]'\n");
+			puts("-h -- Get help");
+			puts("-t SEC -- Print each message every SEC seconds, on average");
+			puts("LOGFILE -- output file to save the log to");
 
 			// terminate
 			exit(1);
@@ -38,6 +43,7 @@ int main(int argc, char* argv[]) {
 		strcpy(ofilename, defaultfilename);
 	}
 
+	// run addmsg function
 	// read the messages in from a txt file
 	FILE* fp = fopen("messages.txt", "r");
 	int linesize = 256;
@@ -47,7 +53,7 @@ int main(int argc, char* argv[]) {
 		line++;
 		line++;
 		char* msg = line;
-		addmsg(type, msg);
+		addmsg(type, line);
 
 		// wait between messages
 		srand(time(NULL));
