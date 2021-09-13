@@ -4,8 +4,8 @@
 #include <time.h>
 #include "../log.h"
 
-extern log_t* headptr;
-extern log_t* tailptr;
+log_t* headptr = NULL;
+log_t* tailptr = NULL;
 
 // getters and setters for list ptrs
 log_t* gethead() {

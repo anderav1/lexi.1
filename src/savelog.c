@@ -3,8 +3,8 @@
 #include "../log.h"
 
 // log_t* headptr and log_t* tailptr defined in log.c
-extern log_t* headptr;
-extern log_t* tailptr;
+//extern log_t* headptr;
+//extern log_t* tailptr;
 
 // savelog function
 // saves all logged msgs to disk file filename

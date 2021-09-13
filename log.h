@@ -16,8 +16,8 @@ typedef struct list_struct
 	struct list_struct* next;
 } log_t;
 
-log_t* headptr = NULL;
-log_t* tailptr = NULL;
+extern log_t* headptr;
+extern log_t* tailptr;
 
 log_t* gethead();
 void sethead(log_t* ptr);
