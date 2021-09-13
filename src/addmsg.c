@@ -45,6 +45,6 @@ int addmsg(const char type, const char* msg) {
 	else
 		tailptr->next = newnode;
 	tailptr = newnode;
-
+	
 	return(0);	
 }

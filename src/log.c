@@ -28,7 +28,7 @@ char* nodestring(log_t* node) {
 	}
 	sprintf(timestr, "Time: %.2d:%.2d:%.2d\n", tp->tm_hour, tp->tm_min, tp->tm_sec);
 	strcat(nodestr, timestr);
-	free(timestr);
+	//free(timestr);
 
 	// write type
 	char* typestr;
@@ -38,7 +38,7 @@ char* nodestring(log_t* node) {
 	}
 	sprintf(typestr, "Message type: %c\n", node->item.type);
 	strcat(nodestr, typestr);
-	free(typestr);
+	//free(typestr);
 
 	// write message
 	char* msgstr;
@@ -48,7 +48,7 @@ char* nodestring(log_t* node) {
 	}
 	sprintf(msgstr, "Message: %s\n\n", node->item.string);
 	strcat(nodestr, msgstr);
-	free(msgstr);
+	//free(msgstr);
 
 	return nodestr;
 }

@@ -1,3 +1,4 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -48,17 +49,18 @@ int main(int argc, char* argv[]) {
 	FILE* fp = fopen("messages.txt", "r");
 	int linesize = 256;
 	char* line = (char*)malloc(linesize);
-	while (fgets(line, linesize, fp)) { // read each line of txt file
+	while ((fgets(line, linesize, fp)) != NULL) {
 		char type = line[0];
-		line++;
-		line++;
-		char* msg = line;
-		addmsg(type, line);
+		if (isalpha(type)) {
+			addmsg(type, line);
 
-		// wait between messages
-		srand(time(NULL));
-		int waittime = rand() % ((sec*2) + 1);
-		sleep(waittime);
+			// wait between messages
+			srand(time(NULL));
+			int waittime = rand() % ((sec*2) + 1);
+			sleep(waittime);
+		} else {
+			break;
+		}
 	}
 
 	free(line);
@@ -71,12 +73,14 @@ int main(int argc, char* argv[]) {
 		puts("savelog function failed\n");
 		return(-1);
 	}
-
+	
+	free(ofilename);
+	
 	// run getlog func
-	char* logstring = (char*)malloc(256);
+	char* logstring = (char*)malloc(2560);
 	logstring = getlog();
 	if (logstring != NULL) {
-		printf("getlog function successful: Log saved to string:\n %s\n", logstring);
+		printf("getlog function successful: Log saved to string:\n\n %s", logstring);
 	} else {
 		puts("getlog function failed\n");
 		return(-1);
@@ -85,5 +89,8 @@ int main(int argc, char* argv[]) {
 
 	// run clearlog func
 	clearlog();
+	puts("Released memory allocated to log");
+
+	puts("All funcs tested");
 	return(0);
 }
